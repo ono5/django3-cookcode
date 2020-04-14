@@ -13,3 +13,11 @@ CREATE INDEX "blog_post_slug_b95473f2" ON "blog_post" ("slug");
 CREATE INDEX "blog_post_author_id_dd7a8485" ON "blog_post" ("author_id");
 COMMIT;
 ```
+
+## postgres in docker
+
+```bash
+docker run --name postgres-local -p 5433:5432 -v ~/.postgres-data:/var/lib/postgresql/data  -e POSTGRES_PASSWORD=postgres -d postgres:10.8
+
+docker container start
+```
