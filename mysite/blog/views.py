@@ -1,7 +1,9 @@
+from django.contrib.postgres.search import SearchVector
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from .models import Post
+from .forms import SearchForm
 
 
 def post_list(request):
@@ -38,3 +40,21 @@ class PostListView(ListView):
     context_object_name = 'posts' # default is object_list
     paginate_by = 3
     template_name = 'blog/post/list.html'
+
+
+def post_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Post.published.annotate(
+                search=SearchVector('title', 'body'),
+            ).filter(search=query)
+    return render(request,
+                  'blog/post/search.html',
+                  {'form': form,
+                   'query': query,
+                   'results': results})

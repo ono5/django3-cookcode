@@ -21,3 +21,29 @@ docker run --name postgres-local -p 5433:5432 -v ~/.postgres-data:/var/lib/postg
 
 docker container start
 ```
+
+## Search
+
+```bash
+
+INSTALLED_APPS = [
+    'django.contrib.postgres',
+]
+```
+
+```bash
+from blog.models import Post
+
+Post.objects.filter(body__search='django')S
+```
+
+Multiple fields
+
+```bash
+from django.contrib.postgres.search import SearchVector
+from blog.models import Post
+
+Post.objects.annotate(
+    search=SearchVector('title', 'body'),
+).filter(search='django')
+```
