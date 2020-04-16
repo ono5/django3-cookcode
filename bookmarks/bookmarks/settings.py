@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # myapp
+    'account.apps.AccountConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # myapp
-    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Tells Django which URL to redirect the user to after a successful login if no next parameter is present in the request
+LOGIN_REDIRECT_URL = 'dashboard'
+# The URL to redirect the user to login(for example, views using the login_required decorator)
+LOGIN_URL = 'login'
+# The URL to redirect the user to log out
+LOGOUT_URL = 'logout'
+
