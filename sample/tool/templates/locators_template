@@ -1,0 +1,9 @@
+from selenium.webdriver.common.by import By
+
+from pravas.locators.base_page import BasePageLocators
+
+
+class {{dispay_name}}PageLocators(BasePageLocators):
+    {%- for elem in elems %}
+    {{elem.key}} = (By.ID, '{{elem.value}}')
+    {%- endfor %}
