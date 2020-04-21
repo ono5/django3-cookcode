@@ -124,3 +124,6 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/' # is the bae URL that serves media files uploaded by users.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') # is the local path where these files reside, which you build by dynamically prepending the BASE_DIR variable.
+
+
+CART_SESSION_ID = 'cart'
