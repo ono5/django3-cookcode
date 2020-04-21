@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # myshop
     'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
